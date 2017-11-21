@@ -36,3 +36,13 @@ def document_to_json(document):
     }
     return result
 
+
+def generate_meta_data(data):
+    result = {
+        "Number of pages": data.pages,
+        "Current page": data.page,
+        "Item per page": data.per_page,
+        "Total number of items": data.total
+    }
+    return result
+
