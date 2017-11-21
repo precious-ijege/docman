@@ -73,33 +73,13 @@ class Users(CRUDMixin, db.Model):
     def __repr__(self):
         return '<Users %r>' % self.first_name
 
-    def generate_auth_token(self, expiration=600):
+    def generate_auth_token(self, expiration=3600):
         """
         Generate token.
         This function generates a token to be used by the user for requests.
         """
         s = Serializer(current_app.config['SECRET_KEY'], expires_in=expiration)
         return s.dumps({'id': self.id})
-
-    @staticmethod
-    def verify_auth_token(token):
-        """
-        Verify token.
-        Verify that the token is valid and return the user id.
-        """
-        s = Serializer(current_app.config['SECRET_KEY'])
-        try:
-            data = s.loads(token)
-        except SignatureExpired:
-            return None
-
-            # valid token, but expired
-        except BadSignature:
-            return None
-
-            # invalid token
-        user = Users.query.get(data['id'])
-        return user
 
 
 class Documents(CRUDMixin, db.Model):
