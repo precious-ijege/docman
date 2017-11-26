@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: .
+    depends_on:
+      - db
+    container_name: api
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "5000:5000"
+    expose:
+      - "5000"
+    links:
+      - db
+    environment:
+      - POSTGRES_HOST=db
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.database
+    container_name: db
+    expose:
+      - "5432"
+    environment:
+      - POSTGRES_DB=docman
+      - POSTGRES_USER=root
