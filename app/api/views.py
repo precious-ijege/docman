@@ -48,7 +48,7 @@ def verify_auth_token():
 
 @api.route('/', methods=['GET'])
 def index():
-    return '<h1>welcome to Docman API Bitches</h1>', 200
+    return '<h1>welcome to Docman API</h1>', 200
 
 
 @api.route('/api/roles', methods=['POST'])
