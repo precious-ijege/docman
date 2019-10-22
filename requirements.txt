@@ -15,4 +15,4 @@ python-editor==1.0.3
 python-env==1.0.0
 six==1.11.0
 SQLAlchemy==1.1.15
-Werkzeug==0.12.2
+Werkzeug==0.15.3
